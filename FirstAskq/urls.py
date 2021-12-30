@@ -26,9 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls')),
     path('api-token-auth/', views.obtain_auth_token),
-    path('login/', LoginView.as_view()),
-    path('register/', RegisterView.as_view())
-
-
+    path('api/v1/login/', LoginView.as_view()),
+    path('api/v2/login/', LoginView.as_view()),
+    path('register/', RegisterView.as_view()),
+    path('accounts/', include('allauth.urls')),
 
 ]

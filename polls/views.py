@@ -18,14 +18,13 @@ from django.core.mail import send_mail
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 
-
 from .models import Poll, ForgotPassword
-
 
 
 class PollViewSet(CreateAPIView, ListAPIView):
     queryset = Poll.objects.all()
     serializer_class = PollModelSerializer
+
     # filter_fields = ['author']
     # search_fields = ['title']
 
@@ -46,6 +45,8 @@ class LoginView(APIView):
         password = serializer.validated_data['password']
         print(username, password)
         return Response(serializer.validated_data)
+
+
 # Create your views here.
 
 
@@ -57,13 +58,16 @@ class RegisterView(generics.CreateAPIView):
 
 class SendCode(APIView):
     permission_classes = [AllowAny]
+
     def get(self, request):
         email = request.GET.get('email')
         try:
             user = User.objects.get(email=email)
-        except Exception:
-            return Response(data={'answer': "The user with this email was not fount"},
-                            status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response(
+                data={'answer': "The user with this email was not fount"},
+                status=status.HTTP_204_NO_CONTENT
+            )
         while True:
             code = randint(100000, 1000000)
             temp = ForgotPassword.objects.filter(code=code, is_active=True).count()
