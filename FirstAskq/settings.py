@@ -168,5 +168,5 @@ REST_FRAMEWORK = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIT_PORT = 587
-EMAIL_HOST_USER = 'shokhinur992@gamil.com'
-EMAIL_HOST_PASSWORD = '02122017B0botik@min'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
