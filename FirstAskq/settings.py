@@ -165,6 +165,7 @@ REST_FRAMEWORK = {
 }
 
 
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIT_PORT = 587
