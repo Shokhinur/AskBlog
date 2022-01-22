@@ -75,7 +75,6 @@ class SendCode(APIView):
                 break
         sent_code = ForgotPassword(user=user, code=code)
         sent_code.save()
-
         return Response(data={'your code': code}, status=status.HTTP_200_OK)
 
     def post(self, request):
